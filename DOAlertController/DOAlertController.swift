@@ -56,7 +56,7 @@ class DOAlertAction : NSObject, NSCopying {
 // MARK: DOAlertAnimation Class
 
 class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
-
+    
     let isPresenting: Bool
     
     init(isPresenting: Bool) {
@@ -114,8 +114,8 @@ class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
                         if (finished) {
                             transitionContext.completeTransition(true)
                         }
-                    })
-            })
+                })
+        })
     }
     
     func dismissAnimateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -134,7 +134,7 @@ class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
             },
             completion: { finished in
                 transitionContext.completeTransition(true)
-            })
+        })
     }
 }
 
@@ -625,8 +625,8 @@ class DOAlertController : UIViewController, UITextFieldDelegate, UIViewControlle
     
     // Handle ContainerView tap gesture
     func handleContainerViewTapGesture(sender: AnyObject) {
-        // cancel action
-        let action = actions[cancelButtonTag] as! DOAlertAction
+//         cancel action
+        let action = actions[cancelButtonTag - 1] as! DOAlertAction
         if (action.handler != nil) {
             action.handler(action)
         }
@@ -688,8 +688,8 @@ class DOAlertController : UIViewController, UITextFieldDelegate, UIViewControlle
             for ac in actions as! [DOAlertAction] {
                 if (ac.style == DOAlertActionStyle.Cancel) {
                     print("DOAlertController can only have one action with a style of DOAlertActionStyleCancel")
-//                    let error: NSError?
-//                    NSException.raise("NSInternalInconsistencyException", format:"DOAlertController can only have one action with a style of DOAlertActionStyleCancel", arguments:getVaList([error ?? "nil"]))
+                    //                    let error: NSError?
+                    //                    NSException.raise("NSInternalInconsistencyException", format:"DOAlertController can only have one action with a style of DOAlertActionStyleCancel", arguments:getVaList([error ?? "nil"]))
                     return
                 }
             }
@@ -714,8 +714,8 @@ class DOAlertController : UIViewController, UITextFieldDelegate, UIViewControlle
         
         // You can add a text field only if the preferredStyle property is set to DOAlertControllerStyle.Alert.
         if (!isAlert()) {
-//            let error: NSError?
-//            NSException.raise("NSInternalInconsistencyException", format: "Text fields can only be added to an alert controller of style DOAlertControllerStyleAlert", arguments:getVaList([error ?? "nil"]))
+            //            let error: NSError?
+            //            NSException.raise("NSInternalInconsistencyException", format: "Text fields can only be added to an alert controller of style DOAlertControllerStyleAlert", arguments:getVaList([error ?? "nil"]))
             return
         }
         if (textFields == nil) {
